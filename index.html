@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Probation Decision Rubric</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <span class="brand-pill">HR</span>
+        <div>
+          <div class="brand-title">Probation Decision Rubric</div>
+          <div class="brand-sub">3-Month Review · Post-review action framework</div>
+        </div>
+      </div>
+      <button class="reset-btn" id="globalReset" onclick="resetAll()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+        Reset checklist
+      </button>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <div class="intro-card">
+      <p>Complete this checklist after the 3-month review has been conducted and the probation overview document has been compiled. Work through <strong>Part 1</strong> first — if a trigger applies, the outcome is determined immediately. Only proceed to <strong>Part 2</strong> if no Part 1 trigger applies.</p>
+    </div>
+
+    <!-- ── PART 1 ─────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="part1-heading">
+      <div class="section-header">
+        <div class="section-num escalate-num">1</div>
+        <div>
+          <h2 id="part1-heading" class="section-title">Immediate outcome triggers</h2>
+          <p class="section-sub">Select the one that applies. Any single trigger determines the outcome immediately — skip Part 2.</p>
+        </div>
+      </div>
+
+      <div class="card" role="group" aria-label="Immediate outcome triggers">
+        <div class="row" data-part="immediate" data-outcome="proceed" role="radio" aria-checked="false" tabindex="0" onclick="toggleImmediate(this)" onkeydown="handleKey(event, this)">
+          <div class="radio-cb green" aria-hidden="true">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="row-text">
+            <strong>No issues or concerns flagged</strong>
+            <span>No performance, attendance, WFH, or survey concerns identified at the 3-month mark</span>
+          </div>
+          <span class="badge badge-proceed">Proceed</span>
+        </div>
+
+        <div class="row" data-part="immediate" data-outcome="escalate" role="radio" aria-checked="false" tabindex="0" onclick="toggleImmediate(this)" onkeydown="handleKey(event, this)">
+          <div class="radio-cb red" aria-hidden="true">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="row-text">
+            <strong>Overall rating is Below Expectations</strong>
+            <span>As recorded by the Hiring Manager at the 3-month review, regardless of individual competency scores</span>
+          </div>
+          <span class="badge badge-escalate">Escalate to Head of HR</span>
+        </div>
+
+        <div class="row" data-part="immediate" data-outcome="escalate" role="radio" aria-checked="false" tabindex="0" onclick="toggleImmediate(this)" onkeydown="handleKey(event, this)">
+          <div class="radio-cb red" aria-hidden="true">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="row-text">
+            <strong>5 or more sick days taken without medical certificates</strong>
+            <span>Uncertified sick leave within the first 3 months of employment</span>
+          </div>
+          <span class="badge badge-escalate">Escalate to Head of HR</span>
+        </div>
+      </div>
+      <p class="field-note">Only one trigger should apply. If none of these fit, proceed to Part 2.</p>
+    </section>
+
+    <!-- ── PART 2 ─────────────────────────────────────────────────── -->
+    <section class="section" id="part2" aria-labelledby="part2-heading">
+      <div class="section-header">
+        <div class="section-num info-num">2</div>
+        <div>
+          <h2 id="part2-heading" class="section-title">Escalation observables</h2>
+          <p class="section-sub">Use when no immediate trigger applies. Tick all observed items — severity weights determine the outcome.</p>
+        </div>
+      </div>
+
+      <div class="legend" aria-label="Severity legend">
+        <div class="leg-item"><span class="leg-dot dot-high" aria-hidden="true"></span> High severity <span class="leg-pts">(3 pts)</span></div>
+        <div class="leg-item"><span class="leg-dot dot-medium" aria-hidden="true"></span> Medium severity <span class="leg-pts">(2 pts)</span></div>
+        <div class="leg-item"><span class="leg-dot dot-low" aria-hidden="true"></span> Low severity <span class="leg-pts">(1 pt)</span></div>
+      </div>
+
+      <!-- Performance -->
+      <h3 class="area-label">Performance</h3>
+      <div class="card" role="group" aria-label="Performance observables">
+        <div class="row" data-part="obs" data-sev="2" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb medium" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Two or more review areas rated Below Expectations</strong></div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="1" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb low" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>One area rated Below Expectations</strong></div>
+          <span class="badge badge-low">Low</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="1" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb low" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>No goals or success plan documented after review</strong></div>
+          <span class="badge badge-low">Low</span>
+        </div>
+      </div>
+
+      <!-- Conduct, Communication & Behaviour -->
+      <h3 class="area-label">Conduct, communication &amp; behaviour</h3>
+      <p class="field-note" style="margin-bottom:6px">Based on concerns flagged by the Hiring Manager in the 3-month review. Peer feedback is not available at this stage.</p>
+      <div class="card" role="group" aria-label="Conduct, communication and behaviour observables">
+        <div class="row" data-part="obs" data-sev="3" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb high" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Specific conduct or behaviour concerns flagged</strong></div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="3" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb high" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Specific communication concerns flagged</strong></div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="1" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb low" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Behaviour rated Below Expectations in 3-month review</strong></div>
+          <span class="badge badge-low">Low</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="1" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb low" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Communication rated Below Expectations in 3-month review</strong></div>
+          <span class="badge badge-low">Low</span>
+        </div>
+      </div>
+
+      <!-- Attendance & Leave -->
+      <h3 class="area-label">Attendance &amp; leave</h3>
+      <div class="card" role="group" aria-label="Attendance and leave observables">
+        <div class="row" data-part="obs" data-sev="3" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb high" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Two or more distinct leave patterns flagged</strong></div>
+          <span class="badge badge-high">High</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="2" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb medium" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>3+ unplanned leave days with one flagged pattern</strong></div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+        <div class="row" data-part="obs" data-sev="1" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb low" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>3+ unplanned leave days, no identifiable pattern</strong></div>
+          <span class="badge badge-low">Low</span>
+        </div>
+      </div>
+
+      <!-- Onboarding Completion -->
+      <h3 class="area-label">Onboarding completion</h3>
+      <div class="card" role="group" aria-label="Onboarding completion observables">
+        <div class="row" data-part="obs" data-sev="2" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb medium" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>Mandatory onboarding (aX Learns) training not completed by 3 months</strong></div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+      </div>
+
+      <!-- WFH Compliance -->
+      <h3 class="area-label">WFH compliance</h3>
+      <div class="card" role="group" aria-label="WFH compliance observables">
+        <div class="row" data-part="obs" data-sev="2" role="checkbox" aria-checked="false" tabindex="0" onclick="toggle(this)" onkeydown="handleKey(event, this)">
+          <div class="check-cb medium" aria-hidden="true"><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div class="row-text"><strong>3 or more late or short-notice WFH requests</strong></div>
+          <span class="badge badge-medium">Medium</span>
+        </div>
+      </div>
+
+    </section>
+        <!-- ── OUTCOME ──────────────────────────────────────────────────── -->
+    <section class="outcome-section" aria-live="polite" aria-atomic="true">
+
+      <div id="score-panel" class="score-panel" style="display:none" aria-label="Severity score">
+        <div class="score-header">
+          <span class="score-label">Weighted severity score</span>
+          <span id="score-display" class="score-value"></span>
+        </div>
+        <div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="15" id="bar-track">
+          <div id="score-bar" class="bar-fill"></div>
+        </div>
+        <div class="bar-labels">
+          <span>0</span>
+          <span class="label-manager">Hiring Manager (&lt;10)</span>
+          <span class="label-escalate">Escalate (≥10)</span>
+          <span>15</span>
+        </div>
+      </div>
+
+      <div id="outcome" class="outcome outcome-idle" role="status">
+        <div class="outcome-icon idle-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="outcome-body">
+          <div class="outcome-title">Awaiting input</div>
+          <div class="outcome-desc">Select an immediate trigger above, or tick observables in Part 2 to see the recommended outcome.</div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Draft prepared with AI assistance — requires review before distribution &nbsp;·&nbsp; For internal HR use only</p>
+  </footer>
+
+  <script src="rubric.js"></script>
+</body>
+</html>
